@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Soundboard</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="land_mines_icon">Land Mines Icon</string>
+    <string name="statis_trap_icon">Statis Trap Icon</string>
+
+</resources>
