@@ -8,9 +8,6 @@
 package com.example.soundboard;
 
 public final class R {
-    public static final class array {
-        public static final int sound_resources=0x7f050000;
-    }
     public static final class attr {
     }
     public static final class drawable {
@@ -23,12 +20,13 @@ public final class R {
         public static final int icon_stasis_trap=0x7f020006;
     }
     public static final class id {
-        public static final int imageButton1=0x7f090000;
-        public static final int imageButton2=0x7f090001;
+        public static final int imageButton1=0x7f080000;
+        public static final int imageButton2=0x7f080001;
+        public static final int imageButton3=0x7f080002;
     }
     public static final class integer {
-        public static final int sb_grid_columns=0x7f060001;
-        public static final int sb_grid_rows=0x7f060000;
+        public static final int sb_grid_columns=0x7f050001;
+        public static final int sb_grid_rows=0x7f050000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -38,10 +36,10 @@ public final class R {
         public static final int tech_spawn_02=0x7f040001;
     }
     public static final class string {
-        public static final int app_name=0x7f070000;
-        public static final int hello_world=0x7f070001;
-        public static final int land_mines_icon=0x7f070002;
-        public static final int statis_trap_icon=0x7f070003;
+        public static final int app_name=0x7f060000;
+        public static final int hello_world=0x7f060001;
+        public static final int land_mines_icon=0x7f060002;
+        public static final int statis_trap_icon=0x7f060003;
     }
     public static final class style {
         /** 
@@ -65,10 +63,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f070001;
     }
 }

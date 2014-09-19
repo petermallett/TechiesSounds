@@ -14,24 +14,24 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements MediaPlayer.OnCompletionListener {
+	private static String sPkgName;
+
 	protected Context mContext;
 	protected MediaPlayer mMediaPlayer;
-	protected ImageButton[] buttons = new ImageButton[6];
-	protected TypedArray sounds;
+	protected ImageButton[] mButtons = new ImageButton[6];
+	protected TypedArray mSounds;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mContext = getApplicationContext();
-
-		getButtonViews();
-		setButtonClicks();
-		sounds = getResources().obtainTypedArray(R.array.sound_resources);
+		sPkgName = this.getPackageName();
 
 		mMediaPlayer = MediaPlayer.create(this, R.raw.tech_spawn_02);
 		mMediaPlayer.start();
 		mMediaPlayer.setOnCompletionListener(this);
+		
+		mContext = getApplicationContext();
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
 		super.onDestroy();
 		
 		if (this.isFinishing()) {
-			sounds.recycle();
+			mSounds.recycle();
 			mMediaPlayer.release();
 		}
 	}
@@ -49,37 +49,15 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         setContentView(R.layout.activity_main);
     }
 
-	private void getButtonViews() {
-		buttons[0] = (ImageButton)this.findViewById(R.id.imageButton1);
-		buttons[1] = (ImageButton)this.findViewById(R.id.imageButton2);
-//		buttons[2] = (ImageButton)this.findViewById(R.id.imageButton3);
-//		buttons[3] = (ImageButton)this.findViewById(R.id.imageButton4);
-//		buttons[4] = (ImageButton)this.findViewById(R.id.imageButton5);
-//		buttons[5] = (ImageButton)this.findViewById(R.id.imageButton6);
-	}
-	
-	private void setButtonClicks() {
-		for (int i = 0; i < buttons.length; i++) {
-			if (buttons[i] != null) {
-				buttons[i].setTag(i);
-				buttons[i].setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						Log.d(null, "clicked view: " + v.getId());
-						playSound(v);
-					}
-				});
-			}
-		}
-	}
+	/**
+	 * Plays the sound referenced by the button's tag property.
+	 */
+	public void buttonClickPlaySound(View v) {
+		int resId = getResources().getIdentifier(
+				(String) v.getTag(), "raw", sPkgName); 
 
-	private void playSound(View button) {
-		int soundId = sounds.getResourceId((int) button.getTag(), 0);
-		playSound(Uri.parse("android.resource://com.example.soundboard/" + soundId));
-	}
+		Uri uri = Uri.parse("android.resource://" + sPkgName + "/" + resId);
 
-	private void playSound(Uri uri) {
 	    try {
 	        mMediaPlayer.reset();
 	        mMediaPlayer.setDataSource(mContext, uri);
